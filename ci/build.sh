@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 export GO111MODULE="on"
 go get -u github.com/mitchellh/gox # cross compile
 GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags "-X main.buildStamp=`date -u '+%Y-%m-%d_%I:%M:%S%p'` -X main.gitRevision=`git describe --tags || git rev-parse HEAD` -s -w"
