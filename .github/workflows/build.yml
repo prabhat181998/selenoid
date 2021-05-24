@@ -43,7 +43,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            abhishek138/selenoid:${{ steps.prepare.outputs.tag_name }}
+            #abhishek138/selenoid:${{ steps.prepare.outputs.tag_name }}
             abhishek138/selenoid:latest
           
       - name: Latest image
