@@ -4,12 +4,19 @@ on:
   push:
     branches:
       - master
-
+    tags:
+      - v*
 jobs:
   golang:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
+      - name: Prepare
+        id: prepare
+        run: |
+            TAG=${GITHUB_REF##*/}
+            echo ::set-output name=tag_name::${TAG}
 
       - name: Setup Golang
         uses: actions/setup-go@v2
@@ -43,6 +50,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
+            abhishek138/selenoid:${{ steps.prepare.outputs.tag_name }}
             abhishek138/selenoid:latest
           
       - name: Latest image
